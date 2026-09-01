@@ -46,9 +46,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         // 画面をクリア
         ClearDrawScreen();
 
-        // 更新前のシーンを記憶
-        SceneKind beforeScene = nowScene;
-
         // スペースキーを押した瞬間かどうかを今ここで判定しておく
         bool isPushSpaceKey = CheckHitKey(KEY_INPUT_SPACE);
         bool isTriggerSpaceKey = isPushSpaceKey && !beforePushSpaceKey;
@@ -62,6 +59,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
             // この中がシーン
             // 好きに処理を書いても、他のシーンに影響を及ぼさない
+            // 簡素でもきちんとシーンとして成り立っている
 
             DrawGraph(0, 0, titleImage, false);
 
