@@ -1,8 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-// タイトルシーン
-class Title : public Scene
+class Game : public Scene
 {
 public:
 

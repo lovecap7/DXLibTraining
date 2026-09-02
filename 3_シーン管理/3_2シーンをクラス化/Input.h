@@ -7,25 +7,21 @@
 namespace Input
 {
 	// スペースキーを押した瞬間をとるための変数
-	bool beforePushSpaceKey = false;
+	// ちなみにinlineはグローバルにするためのおまじない
+	inline bool beforePushSpaceKey = false;
 
-	bool isTriggerSpaceKey = false;
+	inline bool isTriggerSpaceKey = false;
 
 	// このフレームでスペースキーが押されたかを判定
 	// mainでやる
-	void Update()
+	inline void Update()
 	{
 		// スペースキーを押した瞬間かどうかを今ここで判定しておく
 		bool isPushSpaceKey = CheckHitKey(KEY_INPUT_SPACE);
+
 		isTriggerSpaceKey = isPushSpaceKey && !beforePushSpaceKey;
 		// 今の押されている状況を記憶しておく(次のボタン判定に使う)
 		beforePushSpaceKey = isPushSpaceKey;
-	}
-
-	// スペースキーが押されたか取得
-	bool IsTriggerSpaceKey()
-	{
-		return isTriggerSpaceKey;
 	}
 };
 

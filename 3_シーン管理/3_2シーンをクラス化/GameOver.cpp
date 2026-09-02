@@ -1,21 +1,21 @@
-#include "Title.h"
+#include "GameOver.h"
 
 #include <DxLib.h>
 #include "Input.h"
-#include "Game.h"
+#include "Title.h"
 
-void Title::Init()
+void GameOver::Init()
 {
-	// タイトルシーン用の画像を読み込み
-	imgH = LoadGraph(L"img/Title.png");
+	// ゲームオーバー用の画像を読み込み
+	imgH = LoadGraph(L"img/GameOver.png");
 }
 
-Scene* Title::Update()
+Scene* GameOver::Update()
 {
-	// スペースキーが押されたらゲームシーンへ遷移
+	// スペースキーが押されたらタイトルへ遷移
 	if (Input::isTriggerSpaceKey)
 	{
-		Scene* nextScene = new Game();
+		Scene* nextScene = new Title();
 		nextScene->Init();
 
 		return nextScene;
@@ -26,13 +26,13 @@ Scene* Title::Update()
 	return this;
 }
 
-void Title::Draw()
+void GameOver::Draw()
 {
 	// 画像描画
-	DrawGraph(0,0, imgH, false);
+	DrawGraph(0, 0, imgH, false);
 }
 
-void Title::End()
+void GameOver::End()
 {
 	// 画像の解放
 	DeleteGraph(imgH);

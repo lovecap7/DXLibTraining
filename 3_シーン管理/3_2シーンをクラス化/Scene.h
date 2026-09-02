@@ -15,6 +15,8 @@ public:
 	virtual void Init() abstract;
 
 	// 更新処理
+
+	// 今回は更新時に遷移するシーンをreturnさせる設計にする
 	virtual Scene* Update() abstract;
 
 	// 描画
