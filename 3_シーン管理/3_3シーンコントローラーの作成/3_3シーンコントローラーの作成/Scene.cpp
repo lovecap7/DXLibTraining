@@ -1,1 +1,7 @@
 #include "Scene.h"
+
+void Scene::RecieveSceneController(SceneController* cont)
+{
+	// éQè∆Ç∑ÇÈÇæÇØ
+	controller = cont;
+}

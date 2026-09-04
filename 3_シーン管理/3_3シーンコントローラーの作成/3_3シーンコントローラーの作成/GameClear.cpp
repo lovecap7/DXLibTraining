@@ -3,6 +3,7 @@
 #include <DxLib.h>
 #include "Input.h"
 #include "Title.h"
+#include "SceneController.h"
 
 void GameClear::Init()
 {
@@ -10,20 +11,13 @@ void GameClear::Init()
 	imgH = LoadGraph(L"img/GameClear.png");
 }
 
-Scene* GameClear::Update()
+void GameClear::Update()
 {
-	// スペースキーが押されたらゲームシーンへ遷移
+	// スペースキーが押されたらタイトルシーンへ遷移
 	if (Input::isTriggerSpaceKey)
 	{
-		Scene* nextScene = new Title();
-		nextScene->Init();
-
-		return nextScene;
+		controller->ChangeScene(new Title());
 	}
-
-	// 何も入力していないときはこのシーンを続行
-	// このインスタンスのポインタを自分で取得したいときはthisキーワードを使用する
-	return this;
 }
 
 void GameClear::Draw()

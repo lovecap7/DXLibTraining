@@ -11,6 +11,13 @@ class Scene;
 class SceneController
 {
 public:
+	
+	// デストラクタ
+	// このオブジェクトが消えたときに実行される特別な関数
+	~SceneController();
+
+	// 最初のシーンを設定する
+	void Init(Scene* startScene);
 
 	// シーンを更新
 	void Update();
@@ -18,9 +25,14 @@ public:
 	// シーンを描画
 	void Draw();
 
-	// シーンを切り替える
+	// シーンの切り替え処理を確定する
+	void CommitScenes();
+
+	// 一番上のシーンを切り替える
+	// 渡されたシーンの初期化処理を関数内で行っている
 	void ChangeScene(Scene* nextScene);
 
+	// 今あるシーンを消さずに新しいシーンを上乗せ
 	void PushScene(Scene* pushScene);
 
 	// 今一番上にあるシーンを消す
@@ -36,5 +48,8 @@ private:
 	// 動的配列
 	// 要素数を実行中に変えられる配列
 	std::list<Scene*> scenes;
+
+	// シーン変更を保留しておくバッファ
+	std::list<Scene*> changedScenes;
 };
 

@@ -5,6 +5,7 @@
 
 #include "GameOver.h"
 #include "GameClear.h"
+#include "SceneController.h"
 
 void Game::Init()
 {
@@ -12,7 +13,7 @@ void Game::Init()
 	imgH = LoadGraph(L"img/Game.png");
 }
 
-Scene* Game::Update()
+void Game::Update()
 {
 	// スペースキーを押したら50%の確率でクリアできる
 	if (Input::isTriggerSpaceKey)
@@ -20,21 +21,13 @@ Scene* Game::Update()
 		// 3_1と同じです
 		if (GetRand(1))
 		{
-			Scene* nextScene = new GameClear();
-			nextScene->Init();
-
-			return nextScene;
+			controller->ChangeScene(new GameClear());
 		}
 		else
 		{
-			Scene* nextScene = new GameOver();
-			nextScene->Init();
-
-			return nextScene;
+			controller->ChangeScene(new GameOver());
 		}
 	}
-
-	return this;
 }
 
 void Game::Draw()

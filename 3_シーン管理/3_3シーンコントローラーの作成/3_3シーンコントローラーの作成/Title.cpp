@@ -3,6 +3,7 @@
 #include <DxLib.h>
 #include "Input.h"
 #include "Game.h"
+#include "SceneController.h"
 
 void Title::Init()
 {
@@ -10,20 +11,13 @@ void Title::Init()
 	imgH = LoadGraph(L"img/Title.png");
 }
 
-Scene* Title::Update()
+void Title::Update()
 {
 	// スペースキーが押されたらゲームシーンへ遷移
 	if (Input::isTriggerSpaceKey)
 	{
-		Scene* nextScene = new Game();
-		nextScene->Init();
-
-		return nextScene;
+		controller->ChangeScene(new Game());
 	}
-
-	// 何も入力していないときはこのシーンを続行
-	// このインスタンスのポインタを自分で取得したいときはthisキーワードを使用する
-	return this;
 }
 
 void Title::Draw()

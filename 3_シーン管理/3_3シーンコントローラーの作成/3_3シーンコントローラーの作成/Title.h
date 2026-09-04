@@ -10,7 +10,7 @@ public:
 
 	void Init() override;
 
-	Scene* Update() override;
+	void Update() override;
 
 	void Draw() override;
 

@@ -3,6 +3,7 @@
 #include <DxLib.h>
 #include "Input.h"
 #include "Title.h"
+#include "SceneController.h"
 
 void GameOver::Init()
 {
@@ -10,20 +11,13 @@ void GameOver::Init()
 	imgH = LoadGraph(L"img/GameOver.png");
 }
 
-Scene* GameOver::Update()
+void GameOver::Update()
 {
 	// スペースキーが押されたらタイトルへ遷移
 	if (Input::isTriggerSpaceKey)
 	{
-		Scene* nextScene = new Title();
-		nextScene->Init();
-
-		return nextScene;
+		controller->ChangeScene(new Title());
 	}
-
-	// 何も入力していないときはこのシーンを続行
-	// このインスタンスのポインタを自分で取得したいときはthisキーワードを使用する
-	return this;
 }
 
 void GameOver::Draw()
