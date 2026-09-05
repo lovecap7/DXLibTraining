@@ -49,7 +49,17 @@ private:
 	// 要素数を実行中に変えられる配列
 	std::list<Scene*> scenes;
 
+
+
+
+	// この辺の変数はスマートポインタでシーンのポインタを管理したら必要なくなる
+	// 気に食わなかったら自分で改造してほしい
+	// 僕も正直あまり納得いってない
+
 	// シーン変更を保留しておくバッファ
 	std::list<Scene*> changedScenes;
+
+	// 削除済みで、後でdeleteするシーンを覚えておく配列
+	std::list<Scene*> deleteScenes;
 };
 

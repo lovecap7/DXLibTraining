@@ -56,6 +56,16 @@ void SceneController::CommitScenes()
 	// UpdateとDrawが終わった後にシーンの切り替え処理を行う必要がある
 	// そうしないと描画がちらついたりメモリエラーを起こしたりする
 	scenes = changedScenes;
+
+	// 削除したシーンを本当に削除
+	for (auto scene : deleteScenes)
+	{
+		scene->End();
+		delete scene;
+	}
+
+	// 削除したのでリストを空に
+	deleteScenes.clear();
 }
 
 void SceneController::ChangeScene(Scene* nextScene)
@@ -63,12 +73,8 @@ void SceneController::ChangeScene(Scene* nextScene)
 	// (ないと思うけど)シーンが一つもないときは無効
 	if (changedScenes.empty()) return;
 
-	// 切り替えるシーンの型付け処理
-	auto endScene = changedScenes.back();
-	// 終了処理
-	endScene->End();
-	// メモリ開放
-	delete endScene;
+	// シーンを削除
+	deleteScenes.push_back(changedScenes.back());
 
 	// シーンを切り替える
 	changedScenes.back() = nextScene;
@@ -94,10 +100,8 @@ void SceneController::PopScene()
 	// シーンが一つしかない時は無効
 	if (changedScenes.size() < 2) return;
 
-	// 後ろのシーンを削除
-	auto endScene = changedScenes.back();
-	endScene->End();
-	delete endScene;
+	// 後ろのシーンを削除リストへ登録
+	deleteScenes.push_back(changedScenes.back());
 
 	// 一番上のシーンを配列から取り除く
 	changedScenes.pop_back();

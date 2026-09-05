@@ -1,11 +1,10 @@
 #pragma once
 #include "Scene.h"
 
-class Game : public Scene
+// 上乗せするシーンのサンプル
+class Pause : public Scene
 {
 public:
-
-	// 純粋仮想関数を実装していく
 
 	void Init() override;
 
@@ -18,8 +17,5 @@ public:
 private:
 
 	int imgH = -1;
-
-	// ゲームシーンが動いていることが分かりにくかったので追加する
-	int timer = 0;
 };
 

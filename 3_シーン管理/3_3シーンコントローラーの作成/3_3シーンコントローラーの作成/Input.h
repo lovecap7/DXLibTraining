@@ -12,6 +12,10 @@ namespace Input
 
 	inline bool isTriggerSpaceKey = false;
 
+	inline bool beforePushPKey = false;
+
+	inline bool isTriggerPKey = false;
+
 	// このフレームでスペースキーが押されたかを判定
 	// mainでやる
 	inline void Update()
@@ -22,6 +26,12 @@ namespace Input
 		isTriggerSpaceKey = isPushSpaceKey && !beforePushSpaceKey;
 		// 今の押されている状況を記憶しておく(次のボタン判定に使う)
 		beforePushSpaceKey = isPushSpaceKey;
+
+		// 同じようにPキーも判定
+		bool isPushPKey = CheckHitKey(KEY_INPUT_P);
+
+		isTriggerPKey = isPushPKey && !beforePushPKey;
+		beforePushPKey = isPushPKey;
 	}
 };
 
